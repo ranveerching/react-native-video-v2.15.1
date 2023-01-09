@@ -826,6 +826,13 @@ class ReactExoplayerView extends FrameLayout implements
                     text += "unknown";
                     break;
             }
+                
+            // This is a patch for now. We are releasing the player resources on toggle player repeat functionality. Currently this functionality does not provided by this library.
+            if (events.contains(Player.EVENT_REPEAT_MODE_CHANGED)) {
+                releasePlayer();
+                cleanUpResources();
+                Log.d("--------------------", "Repeat mode changed!!!!");
+            }
             Log.d(TAG, text);
         }
     }
